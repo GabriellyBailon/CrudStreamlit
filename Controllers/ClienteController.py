@@ -18,3 +18,14 @@ def SelecionarTodos():
         costumerList.append(clienteModel.Cliente(row[0], row[1], row[2], row[3]))
         
     return costumerList
+
+def SelecionarPorId(id):
+    db.cursor.execute("""
+    SELECT * FROM Cliente 
+    WHERE ID = ? """, id)
+    costumerList = []
+
+    for row in db.cursor.fetchall():
+        costumerList.append(clienteModel.Cliente(row[0], row[1], row[2], row[3]))
+        
+    return costumerList
