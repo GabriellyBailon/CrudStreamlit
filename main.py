@@ -6,6 +6,8 @@ import pandas as pd
 import Pages.Cliente.inserir_cliente as PageInserirCliente
 import Pages.Cliente.listar_clientes as PageListarCliente
 
+import Pages.Cliente.deletar_cliente as PageDeletarCliente
+
 def alterar_dados():
     st.title('Alterar cliente cadastrado')
 
@@ -40,6 +42,9 @@ def exibir_menu():
         PageInserirCliente.InserirCliente.inserir()
     elif opcao == 'Alterar':
         alterar_dados()
+    elif opcao == 'Excluir':
+        PageDeletarCliente.excluir_dados()
+
 
 
 exibir_menu()

@@ -29,3 +29,10 @@ def SelecionarPorId(id):
         costumerList.append(clienteModel.Cliente(row[0], row[1], row[2], row[3]))
         
     return costumerList
+
+def DeletarPorId(id):
+    db.cursor.execute("""
+    Delete FROM Cliente 
+    WHERE ID = ? """, id)
+
+    db.cursor.commit()
