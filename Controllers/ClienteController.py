@@ -1,4 +1,5 @@
 import services.database as db
+import streamlit as st
 from models import ClienteModel as clienteModel
 
 def IncluirCliente(cliente):
@@ -36,3 +37,18 @@ def DeletarPorId(id):
     WHERE ID = ? """, id)
 
     db.cursor.commit()
+
+def AlterarCliente(cliente):
+    query = """
+    UPDATE Cliente
+    SET Nome = ?, Idade = ?, Profissao = ?
+    WHERE Id = ?;
+    """
+
+    try:
+        # Executar o comando com os parâmetros
+        db.cursor.execute(query, (cliente[1], cliente[2], cliente[3], cliente[0]))
+        db.conn.commit()
+        st.success("Dados atualizados com sucesso! Atualize a página.")
+    except Exception as e:
+        st.error(f"Erro ao atualizar os dados: {e}")
